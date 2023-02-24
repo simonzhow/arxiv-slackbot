@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import arxiv from 'arxiv-api';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 type Papers = {
   id: string
@@ -32,7 +32,7 @@ function constructSlackPayload(papers: Papers[]) {
         "type": "section",
         "text": {
           "type": "mrkdwn",
-          "text": `*arXiv digest for ${moment().format('MMMM Do, YYYY')}*`
+          "text": `*arXiv digest for ${moment().tz("America/Los_Angeles").format('dddd, MMMM Do')}*`
         }
       },
       {
